@@ -1,6 +1,10 @@
 package com.finddreams.stockglance
 
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -18,6 +22,7 @@ import androidx.lifecycle.lifecycleScope
 import com.finddreams.stockglance.data.StockRepository
 import com.finddreams.stockglance.glance.MyAppWidget
 import com.finddreams.stockglance.ui.theme.StockGlanceTheme
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -32,16 +37,28 @@ class MainActivity : ComponentActivity() {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(text = "设置")
-                        SettingStockScreen {
+                        SettingStockScreen(onClickStock = {
                             StockRepository.setStockInfo(it)
-                            lifecycleScope.launch {
-                                MyAppWidget().updateAll(this@MainActivity)
-                            }
-                            finish()
-                        }
+                            updateGlance()
+                        }, onClickSkin = {
+                            Log.i("MainActivity", "onCreate: 皮肤 $it")
+                            StockRepository.setSkinState(it)
+                            updateGlance()
+                        })
+
                     }
+
                 }
             }
         }
+    }
+
+    private fun updateGlance() {
+        lifecycleScope.launch {
+            delay(50)
+            MyAppWidget().updateAll(this@MainActivity)
+        }
+
+        finish()
     }
 }

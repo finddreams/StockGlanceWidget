@@ -9,13 +9,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
-import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.finddreams.stockglance.data.StockRepository
 import com.finddreams.stockglance.kv.appleStock
 import com.finddreams.stockglance.kv.mtStock
 import com.finddreams.stockglance.kv.txStock
@@ -24,7 +22,8 @@ import com.finddreams.stockglance.model.StockInfo
 
 @Composable
 fun SettingStockScreen(
-    onClick: (StockInfo) -> Unit
+    onClickStock: (StockInfo) -> Unit,
+    onClickSkin: (Boolean) -> Unit
 ) {
     //3个股票市场的股票 美股
     val stockMarketList = arrayListOf<StockInfo>(
@@ -32,17 +31,49 @@ fun SettingStockScreen(
         mtStock,
         appleStock
     )
+    val skinList = arrayListOf<Boolean>(
+        false,
+        true,
+    )
     LazyColumn() {
+        item {
+            ListItem(
+                headlineContent = { Text("股票", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
+            )
+            HorizontalDivider()
+        }
+
         items(stockMarketList) {
             ListItem(
-                modifier = Modifier.clickable{
-                onClick(it)
+                modifier = Modifier.clickable {
+                    onClickStock(it)
                 },
-                headlineContent = { Text(it.name+"（${it.code}）") },
+                headlineContent = { Text(it.name + "（${it.code}）") },
                 trailingContent = {
                     Icon(
                         Icons.AutoMirrored.Filled.ArrowForward,
                         contentDescription = "Localized description",
+                    )
+                },
+            )
+            HorizontalDivider()
+        }
+        item {
+            ListItem(
+                headlineContent = { Text("皮肤", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
+            )
+            HorizontalDivider()
+        }
+        items(skinList) {
+            ListItem(
+                modifier = Modifier.clickable {
+                    onClickSkin(it)
+                },
+                headlineContent = { Text(if (it) "深色" else "浅色") },
+                trailingContent = {
+                    Icon(
+                        Icons.AutoMirrored.Filled.ArrowForward,
+                        contentDescription = "",
                     )
                 },
             )
@@ -54,7 +85,5 @@ fun SettingStockScreen(
 @Preview(name = "SettingStockScreen")
 @Composable
 private fun PreviewSettingStockScreen() {
-    SettingStockScreen(){
-
-    }
+    SettingStockScreen(onClickStock = {}, onClickSkin = {})
 }

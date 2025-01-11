@@ -8,7 +8,7 @@ import com.finddreams.stockglance.model.StockInfo
 @SerializeConfig(mmapID = "app_config") // 指定mmapID可以避免字段名重复情况下导致的错误
 object AppKVConfig {
     var saveStockInfo: StockInfo? by serial(txStock)
-
+    var isNightSkin: Boolean by serial(true)
 }
 
 val txStock = StockInfo("腾讯控股", "00700", "373.400", "+4.200", "+1.14%", "香港",R.drawable.hk)

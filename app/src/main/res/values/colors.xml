@@ -14,5 +14,5 @@
     <color name="widget_text_color">#FFFFFF</color>
     <color name="widget_text_color_red">#FFF73E46</color>
     <color name="widget_text_color_green">#FF16BA70</color>
-
+    <color name="widget_bg_color_skin">#FF1A1B1F</color>
 </resources>
