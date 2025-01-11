@@ -22,7 +22,11 @@ import com.finddreams.stockglance.kv.mtStock
 import com.finddreams.stockglance.kv.txStock
 import com.finddreams.stockglance.model.StockInfo
 
-
+/**
+ * 股票小部件点击打开的 设置页面
+ *@Author: finddreams
+ *Copyright (c) finddreams https://github.com/finddreams
+ */
 @Composable
 fun SettingStockScreen(
     onClickStock: (StockInfo) -> Unit,

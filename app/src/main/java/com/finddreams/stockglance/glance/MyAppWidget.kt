@@ -50,7 +50,11 @@ import com.finddreams.stockglance.ui.theme.MyAppWidgetGlanceColorScheme.colorSki
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
+/**
+ * GlanceWidget 股票小部件
+ *@Author: finddreams
+ *Copyright (c) finddreams https://github.com/finddreams
+ */
 class MyAppWidget : GlanceAppWidget() {
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {

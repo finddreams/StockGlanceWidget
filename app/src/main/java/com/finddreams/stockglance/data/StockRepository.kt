@@ -5,7 +5,11 @@ import com.finddreams.stockglance.kv.txStock
 import com.finddreams.stockglance.model.StockInfo
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-
+/**
+ *管理stateFlow
+ *@Author: finddreams
+ *Copyright (c) finddreams https://github.com/finddreams
+ */
 object StockRepository {
     private val _stockInfo = MutableStateFlow<StockInfo>(AppKVConfig.saveStockInfo?:txStock)
     val stockInfoState = _stockInfo.asStateFlow()

@@ -4,8 +4,12 @@ import com.drake.serialize.serialize.annotation.SerializeConfig
 import com.drake.serialize.serialize.serial
 import com.finddreams.stockglance.R
 import com.finddreams.stockglance.model.StockInfo
-
-@SerializeConfig(mmapID = "app_config") // 指定mmapID可以避免字段名重复情况下导致的错误
+/**
+ * 用来保存数据 使用MMKV保存到本地
+ *@Author: finddreams
+ *Copyright (c) finddreams https://github.com/finddreams
+ */
+@SerializeConfig(mmapID = "app_config")
 object AppKVConfig {
     var saveStockInfo: StockInfo? by serial(txStock)
     var isNightSkin: Boolean by serial(true)

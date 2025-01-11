@@ -31,7 +31,11 @@ import androidx.glance.unit.ColorProvider
 import com.finddreams.stockglance.MainActivity
 import com.finddreams.stockglance.R
 import com.finddreams.stockglance.model.StockInfo
-
+/**
+ * 股票小部件的UI
+ *@Author: finddreams
+ *Copyright (c) finddreams https://github.com/finddreams
+ */
 @Composable
 fun StockWidgetContent(stock: StockInfo, isNight: Boolean) {
     Log.i("StockWidgetContent", "StockWidgetContent: stock ${stock.name} isNight $isNight")
