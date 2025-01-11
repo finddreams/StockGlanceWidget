@@ -9,11 +9,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.finddreams.stockglance.kv.AppKVConfig
 import com.finddreams.stockglance.kv.appleStock
 import com.finddreams.stockglance.kv.mtStock
 import com.finddreams.stockglance.kv.txStock
@@ -50,10 +53,13 @@ fun SettingStockScreen(
                 },
                 headlineContent = { Text(it.name + "（${it.code}）") },
                 trailingContent = {
-                    Icon(
-                        Icons.AutoMirrored.Filled.ArrowForward,
-                        contentDescription = "Localized description",
-                    )
+                    if (AppKVConfig.saveStockInfo?.code==it.code){
+                        Icon(
+                            Icons.Default.Check,
+                            contentDescription = "",
+                            tint = Color.Blue
+                        )
+                    }
                 },
             )
             HorizontalDivider()
@@ -71,10 +77,13 @@ fun SettingStockScreen(
                 },
                 headlineContent = { Text(if (it) "深色" else "浅色") },
                 trailingContent = {
-                    Icon(
-                        Icons.AutoMirrored.Filled.ArrowForward,
-                        contentDescription = "",
-                    )
+                    if (AppKVConfig.isNightSkin==it){
+                        Icon(
+                            Icons.Default.Check,
+                            contentDescription = "",
+                            tint = Color.Blue
+                        )
+                    }
                 },
             )
             HorizontalDivider()

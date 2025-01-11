@@ -1,6 +1,8 @@
 package com.finddreams.stockglance.glance
 
 import android.content.Context
+import android.os.Build
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
@@ -15,6 +17,7 @@ import androidx.glance.ImageProvider
 import androidx.glance.action.actionStartActivity
 import androidx.glance.action.clickable
 import androidx.glance.appwidget.GlanceAppWidget
+import androidx.glance.appwidget.GlanceAppWidgetManager
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.appwidget.provideContent
 import androidx.glance.background
@@ -39,9 +42,14 @@ import com.finddreams.stockglance.data.StockRepository
 import com.finddreams.stockglance.kv.AppKVConfig
 import com.finddreams.stockglance.kv.txStock
 import com.finddreams.stockglance.model.StockInfo
+import com.finddreams.stockglance.ui.theme.DarkColors
+import com.finddreams.stockglance.ui.theme.LightColors
 import com.finddreams.stockglance.ui.theme.MyAppWidgetGlanceColorScheme
 import com.finddreams.stockglance.ui.theme.MyAppWidgetGlanceColorScheme.colorSkinDark
 import com.finddreams.stockglance.ui.theme.MyAppWidgetGlanceColorScheme.colorSkinLight
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MyAppWidget : GlanceAppWidget() {
 
@@ -58,8 +66,25 @@ class MyAppWidget : GlanceAppWidget() {
 //            // Retrieve the cache data everytime the content is refreshed
            val stockState=repository.stockInfoState.collectAsState()
            val skinState=repository.skinState.collectAsState()
-            GlanceTheme(colors = if (skinState.value) colorSkinDark else colorSkinLight) {
-                StockWidgetContent(stockState.value,skinState.value)
+            val skinValue =skinState.value
+            val stockValue = stockState.value
+            Log.i("MyAppWidget", "provideGlance: skinValue:$skinValue")
+            GlanceTheme(
+                colors = if (skinValue) {
+                    colorSkinDark
+                } else {
+                    colorSkinLight
+                }
+            ) {
+                StockWidgetContent(stockValue, skinValue)
+            }
+        }
+    }
+
+    fun forceUpdate(context: Context) {
+        CoroutineScope(Dispatchers.Default).launch {
+            GlanceAppWidgetManager(context).getGlanceIds(MyAppWidget::class.java).forEach { glanceId ->
+                update(context, glanceId)
             }
         }
     }

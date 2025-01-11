@@ -41,7 +41,7 @@ fun StockWidgetContent(stock: StockInfo, isNight: Boolean) {
     ) {
         Column(
             modifier = GlanceModifier.fillMaxSize()
-                .background(GlanceTheme.colors.background)
+                .background(getBgColor(isNight))
                 .padding(16.dp),
             verticalAlignment = Alignment.Top,
         ) {
