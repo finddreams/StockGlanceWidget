@@ -12,7 +12,7 @@ import com.finddreams.stockglance.model.StockInfo
 @SerializeConfig(mmapID = "app_config")
 object AppKVConfig {
     var saveStockInfo: StockInfo? by serial(txStock)
-    var isNightSkin: Boolean by serial(true)
+    var isDarkSkin: Boolean by serial(true)
 }
 
 val txStock = StockInfo("腾讯控股", "00700", "373.400", "+4.200", "+1.14%", "香港",R.drawable.hk)

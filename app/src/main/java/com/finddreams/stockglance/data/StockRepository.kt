@@ -14,7 +14,7 @@ object StockRepository {
     private val _stockInfo = MutableStateFlow<StockInfo>(AppKVConfig.saveStockInfo?:txStock)
     val stockInfoState = _stockInfo.asStateFlow()
 
-    private val _skinState = MutableStateFlow<Boolean>(AppKVConfig.isNightSkin)
+    private val _skinState = MutableStateFlow<Boolean>(AppKVConfig.isDarkSkin)
     val skinState = _skinState.asStateFlow()
 
     fun setStockInfo(stockInfo: StockInfo) {
@@ -23,6 +23,6 @@ object StockRepository {
     }
     fun setSkinState(isNightSkin: Boolean) {
         _skinState.value = isNightSkin
-        AppKVConfig.isNightSkin = isNightSkin
+        AppKVConfig.isDarkSkin = isNightSkin
     }
 }
