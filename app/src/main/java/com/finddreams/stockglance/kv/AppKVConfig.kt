@@ -17,4 +17,4 @@ object AppKVConfig {
 
 val txStock = StockInfo("腾讯控股", "00700", "373.400", "+4.200", "+1.14%", "香港",R.drawable.hk)
 val mtStock = StockInfo("贵州茅台", "600519", "1436.00", "-8.00", "-0.55%", "A股",R.drawable.zh)
-val appleStock = StockInfo("苹果", "APPL", "234.365", "-8.335", "-3.43%", "美股",R.drawable.us)
+val appleStock = StockInfo("苹果", "AAPL", "234.365", "-8.335", "-3.43%", "美股",R.drawable.us)
