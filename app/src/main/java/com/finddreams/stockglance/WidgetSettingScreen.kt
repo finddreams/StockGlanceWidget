@@ -34,7 +34,7 @@ import com.finddreams.stockglance.model.StockInfo
  *Copyright (c) finddreams https://github.com/finddreams
  */
 @Composable
-fun SettingStockScreen(
+fun AppWidgetSettingScreen(
     selectCode: String,
     isDarkSkin: Boolean,
     onClickStock: (StockInfo) -> Unit,
@@ -128,5 +128,5 @@ fun SettingStockScreen(
 @Preview(name = "SettingStockScreen")
 @Composable
 private fun PreviewSettingStockScreen() {
-    SettingStockScreen("00700", true, onClickStock = {}, onClickSkin = {})
+    AppWidgetSettingScreen("00700", true, onClickStock = {}, onClickSkin = {})
 }

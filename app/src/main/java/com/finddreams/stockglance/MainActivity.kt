@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Text(text = "设置")
 
-                        SettingStockScreen(selectCode,AppKVConfig.isDarkSkin,onClickStock = {
+                        AppWidgetSettingScreen(selectCode,AppKVConfig.isDarkSkin,onClickStock = {
                             StockRepository.setStockInfo(it)
                             Toast.makeText(this@MainActivity, "切换股票:${it.name}", Toast.LENGTH_SHORT).show()
                             MyAppWidget().forceUpdate(this@MainActivity)
