@@ -59,5 +59,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.glance.appwidget)
     implementation(libs.androidx.glance.material3)
-    implementation("com.github.liangjingkanji:Serialize:3.0.1")
+    implementation(libs.serialize)
 }
